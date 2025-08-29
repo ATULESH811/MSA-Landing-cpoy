@@ -67,27 +67,48 @@ const About: React.FC = () => {
   };
 
   return (
-    <section id="about" className="py-20 bg-gradient-to-b from-gray-900 to-slate-900 relative overflow-hidden">
-      {/* Background elements */}
-      <div className="absolute top-0 left-0 w-full h-72 bg-gradient-to-b from-blue-900/20 to-transparent"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl"></div>
-      
+    <section id="about" className="relative py-20 bg-gray-950 overflow-hidden">
+      {/* Futuristic Background Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Hexagonal Grid Overlay */}
+        <div className="absolute inset-0 hex-grid opacity-20"></div>
+        
+        {/* Glowing Orbs */}
+        <div className="absolute top-20 left-20 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl animate-pulse-slow"></div>
+        <div className="absolute bottom-20 right-20 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl"></div>
+        
+        {/* Connection Lines */}
+        <div className="absolute inset-0 connection-lines"></div>
+        
+        {/* Floating Tech Elements */}
+        <div className="absolute top-40 left-1/4 w-10 h-10 border border-cyan-400/30 rounded-lg transform rotate-45 animate-float-tech"></div>
+        <div className="absolute bottom-40 right-1/3 w-6 h-6 border border-purple-400/30 rounded-full animate-float-tech" style={{animationDelay: '2s'}}></div>
+        <div className="absolute top-1/3 right-1/4 w-8 h-8 border border-blue-400/30 transform rotate-12 animate-float-tech" style={{animationDelay: '4s'}}></div>
+        
+        {/* Animated Scan Lines */}
+        <div className="absolute inset-0 scan-lines"></div>
+      </div>
+
       <div className="container mx-auto px-6 relative z-10">
-        {/* <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-            About Us
+        {/* Header Section */}
+        <div className="text-center mb-16 animate-fade-in">
+          <h2 className="text-4xl md:text-5xl font-black mb-6">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400">
+              About Us
+            </span>
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mb-6"></div>
-          <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-            The Microsoft Learn Student Ambassadors (MLSA) program is a global initiative by Microsoft to empower students with technical skills, leadership opportunities, and a platform to innovate. The MLSA IIIT Dharwad Chapter is a student-driven community aimed at fostering a culture of learning, innovation, and collaboration among students.
-          </p>
-        </div> */}
-
-        <div className="items-center mb-20">
           
+          {/* Animated Tech Underline */}
+          <div className="flex justify-center mb-8">
+            <div className="h-1 w-24 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 rounded-full animate-tech-underline"></div>
+          </div>
+          
+          
+        </div>
 
-          {/* Big Event Slideshow */}
-          <div className="relative h-[720px] rounded-xl overflow-hidden shadow-2xl group">
+        {/* Event Slideshow */}
+        <div className="mb-20 animate-fade-in-up">
+          <div className="relative h-[600px] rounded-xl overflow-hidden shadow-2xl group border border-cyan-400/20">
             <div className="absolute inset-0 flex transition-transform duration-700 ease-in-out">
               {eventImages.map((image, index) => (
                 <div 
@@ -109,15 +130,17 @@ const About: React.FC = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
                   <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
-                    <h4 className="text-2xl font-bold mb-2">{eventTitles[index]}</h4>
-                    <p className="text-lg text-blue-200 mb-4">{eventDescriptions[index]}</p>
+                    <h4 className="text-2xl font-bold mb-2 bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+                      {eventTitles[index]}
+                    </h4>
+                    <p className="text-cyan-200 mb-4">{eventDescriptions[index]}</p>
                     <div className="flex items-center">
-                      <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center mr-3">
+                      <div className="w-8 h-8 bg-cyan-600 rounded-full flex items-center justify-center mr-3">
                         <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
                         </svg>
                       </div>
-                      <span className="text-sm">MLSA IIIT Dharwad Event</span>
+                      <span className="text-sm text-gray-300">MLSA IIIT Dharwad Event</span>
                     </div>
                   </div>
                 </div>
@@ -127,17 +150,17 @@ const About: React.FC = () => {
             {/* Navigation buttons */}
             <button 
               onClick={goToPrevSlide}
-              className="absolute left-6 top-1/2 transform -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white p-4 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100"
+              className="absolute left-6 top-1/2 transform -translate-y-1/2 bg-black/60 hover:bg-cyan-500/80 text-white p-3 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100 backdrop-blur-sm"
             >
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
             </button>
             <button 
               onClick={goToNextSlide}
-              className="absolute right-6 top-1/2 transform -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white p-4 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100"
+              className="absolute right-6 top-1/2 transform -translate-y-1/2 bg-black/60 hover:bg-cyan-500/80 text-white p-3 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100 backdrop-blur-sm"
             >
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </button>
@@ -148,40 +171,44 @@ const About: React.FC = () => {
                 <button
                   key={index}
                   onClick={() => goToSlide(index)}
-                  className={`w-4 h-4 rounded-full transition-all duration-300 ${
-                    index === currentSlide ? 'bg-blue-500 scale-125' : 'bg-white/60 hover:bg-white'
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    index === currentSlide ? 'bg-cyan-500 scale-125' : 'bg-white/60 hover:bg-white'
                   }`}
                 ></button>
               ))}
             </div>
 
             {/* Slide counter */}
-            <div className="absolute top-6 right-6 bg-black/60 text-white px-3 py-1 rounded-full text-sm">
+            <div className="absolute top-6 right-6 bg-black/60 text-white px-3 py-1 rounded-full text-sm backdrop-blur-sm">
               {currentSlide + 1} / {eventImages.length}
             </div>
           </div>
         </div>
 
         {/* Founder Section */}
-        <div className="bg-gradient-to-r from-gray-800 to-slate-800 rounded-2xl p-8 md:p-12 shadow-xl">
-          <h3 className="text-2xl md:text-3xl font-bold mb-8 text-center text-white">Meet the Founder</h3>
+        <div className="bg-gray-900/80 backdrop-blur-xl border border-cyan-400/30 rounded-2xl p-8 md:p-12 shadow-xl shadow-cyan-500/10 animate-fade-in-up">
+          <h3 className="text-2xl md:text-3xl font-bold mb-8 text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">
+            Meet the Founder
+          </h3>
           <div className="flex flex-col md:flex-row items-center gap-8">
             <div className="relative">
-              <div className="w-48 h-48 mx-auto md:mx-0 rounded-full overflow-hidden border-4 border-blue-500/30 shadow-lg">
+              <div className="w-48 h-48 mx-auto md:mx-0 rounded-full overflow-hidden border-4 border-cyan-500/30 shadow-lg shadow-cyan-500/20">
                 <img 
                   src="/images/AJ.jpg" 
                   alt="Aryan Jaiswal" 
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="absolute -bottom-2 -right-2 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full">
-                β-MLSA
+              <div className="absolute -bottom-2 -right-2 bg-cyan-600 text-white text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">
+                <span className="text-yellow-400">gold</span>-MLSA
               </div>
+              {/* Glow effect */}
+              <div className="absolute -inset-4 bg-cyan-500/20 rounded-full blur-xl -z-10"></div>
             </div>
             
             <div className="flex-1 text-center md:text-left">
               <h4 className="text-2xl font-bold text-white mb-2">Aryan Jaiswal</h4>
-              <p className="text-blue-300 mb-4">Founder & Microsoft Student Ambassador</p>
+              <p className="text-cyan-300 mb-4">Founder & Microsoft Student Ambassador</p>
               <p className="text-gray-300 leading-relaxed">
                 Passionate about AI, Web Development, and Community Building. I am a B.Tech student specializing in full-stack development, AI/ML, and cloud technologies. With hands-on experience in building impactful projects and mentoring students, I aim to create a thriving tech community at IIIT Dharwad.
               </p>
@@ -190,34 +217,158 @@ const About: React.FC = () => {
                   href="https://www.linkedin.com/in/aryanjstar/" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors duration-300"
+                  className="relative overflow-hidden flex items-center gap-2 bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-medium py-2 px-4 rounded-lg transition-all duration-500 shadow-lg hover:shadow-cyan-500/30 transform hover:scale-105 group"
                 >
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                  </svg>
-                  Connect on LinkedIn
+                  <span className="relative z-10">Connect on LinkedIn</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </a>
                 <a 
                   href="https://github.com/aryanjstar" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-lg transition-colors duration-300"
+                  className="relative overflow-hidden flex items-center gap-2 bg-gray-800/70 backdrop-blur-sm border border-cyan-400/30 text-white font-medium py-2 px-4 rounded-lg transition-all duration-500 hover:border-cyan-400/50 hover:scale-105 group"
                 >
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-                  </svg>
-                  GitHub
+                  <span className="relative z-10">GitHub</span>
+                  <div className="absolute inset-0 bg-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </a>
               </div>
             </div>
+
+          </div>
+        </div>
+        <br />
+        {/* lead */}
+        <div className="bg-gray-900/80 backdrop-blur-xl border border-cyan-400/30 rounded-2xl p-8 md:p-12 shadow-xl shadow-cyan-500/10 animate-fade-in-up">
+          <h3 className="text-2xl md:text-3xl font-bold mb-8 text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">
+            Meet the Current Lead
+          </h3>
+          <div className="flex flex-col md:flex-row items-center gap-8">
+            <div className="relative">
+              <div className="w-48 h-48 mx-auto md:mx-0 rounded-full overflow-hidden border-4 border-cyan-500/30 shadow-lg shadow-cyan-500/20">
+                <img 
+                  src="/images/SS.jpg" 
+                  alt="Aryan Jaiswal" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="absolute -bottom-2 -right-2 bg-cyan-600 text-white text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">
+                <span className="text-cyan-400">alpha</span>-MLSA
+              </div>
+              {/* Glow effect */}
+              <div className="absolute -inset-4 bg-cyan-500/20 rounded-full blur-xl -z-10"></div>
+            </div>
+            
+            <div className="flex-1 text-center md:text-left">
+              <h4 className="text-2xl font-bold text-white mb-2">Sai Sathwik Ch</h4>
+              <p className="text-cyan-300 mb-4">Current Lead Microsoft Student Ambassador</p>
+              <p className="text-gray-300 leading-relaxed">
+                I'm a senior at IIIT DhaRWAD pursuing a Bachelors degree in Computer Science. I have a keen interest in the field of Artificial Intelligence and Machine Learning, and I am excited to be a part of the Microsoft Student Ambassadors program. I am passionate about contributing to the growth and development of the Microsoft community, and I am committed to using my skills and knowledge to make a positive impact on the world.
+              </p>
+              <div className="mt-6 flex flex-wrap gap-3 justify-center md:justify-start">
+                <a 
+                  href="https://www.linkedin.com/in/sai-sathwik-cheera-96364930a/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="relative overflow-hidden flex items-center gap-2 bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-medium py-2 px-4 rounded-lg transition-all duration-500 shadow-lg hover:shadow-cyan-500/30 transform hover:scale-105 group"
+                >
+                  <span className="relative z-10">Connect on LinkedIn</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </a>
+                <a 
+                  href="https://github.com/Saisathwik8838" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="relative overflow-hidden flex items-center gap-2 bg-gray-800/70 backdrop-blur-sm border border-cyan-400/30 text-white font-medium py-2 px-4 rounded-lg transition-all duration-500 hover:border-cyan-400/50 hover:scale-105 group"
+                >
+                  <span className="relative z-10">GitHub</span>
+                  <div className="absolute inset-0 bg-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </a>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
 
       <style jsx>{`
-        .shadow-2xl {
-          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        .hex-grid {
+          background-image: 
+            linear-gradient(90deg, rgba(6, 182, 212, 0.1) 1px, transparent 1px),
+            linear-gradient(180deg, rgba(6, 182, 212, 0.1) 1px, transparent 1px);
+          background-size: 30px 30px;
+          mask-image: repeating-conic-gradient(#000 0% 25%, transparent 0% 50%);
+          mask-size: 30px 30px;
         }
+        
+        .connection-lines::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-image: 
+            linear-gradient(to right, rgba(6, 182, 212, 0.1) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(6, 182, 212, 0.1) 1px, transparent 1px);
+          background-size: 30px 30px;
+          mask-image: 
+            radial-gradient(circle at 25% 25%, black 10%, transparent 20%),
+            radial-gradient(circle at 75% 75%, black 10%, transparent 20%),
+            radial-gradient(circle at 25% 75%, black 10%, transparent 20%),
+            radial-gradient(circle at 75% 25%, black 10%, transparent 20%);
+          mask-size: 100% 100%;
+          mask-repeat: no-repeat;
+        }
+        
+        .scan-lines {
+          background: linear-gradient(
+            to bottom,
+            transparent 50%,
+            rgba(6, 182, 212, 0.03) 51%,
+            transparent 52%
+          );
+          background-size: 100% 3px;
+          animation: scan 8s linear infinite;
+          pointer-events: none;
+        }
+        
+        @keyframes scan {
+          0% { background-position: 0 0; }
+          100% { background-position: 0 100%; }
+        }
+        
+        @keyframes float-tech {
+          0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.3; }
+          33% { transform: translateY(-8px) rotate(1deg); opacity: 0.5; }
+          66% { transform: translateY(4px) rotate(-0.5deg); opacity: 0.4; }
+        }
+        
+        @keyframes tech-underline {
+          0% { width: 0; opacity: 0; }
+          50% { width: 6rem; opacity: 1; }
+          100% { box-shadow: 0 0 12px 2px rgba(6, 182, 212, 0.7); }
+        }
+
+        @keyframes pulse-slow {
+          0%, 100% { opacity: 0.6; transform: scale(1); }
+          50% { opacity: 0.9; transform: scale(1.05); }
+        }
+
+        @keyframes fade-in {
+          from { opacity: 0; transform: translateY(15px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fade-in-up {
+          from { opacity: 0; transform: translateY(30px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-float-tech { animation: float-tech 8s ease-in-out infinite; }
+        .animate-tech-underline { animation: tech-underline 2s ease-out forwards; }
+        .animate-pulse-slow { animation: pulse-slow 4s ease-in-out infinite; }
+        .animate-fade-in { animation: fade-in 1s ease-out; }
+        .animate-fade-in-up { animation: fade-in-up 0.8s ease-out; }
       `}</style>
     </section>
   );

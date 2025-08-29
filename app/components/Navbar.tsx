@@ -78,7 +78,7 @@ const Navbar = () => {
             </div>
             <div className="hidden sm:block">
               <h1 className="text-lg font-bold tracking-tight text-white">
-                MLSA IIIT Dharwad
+                MSA IIIT Dharwad
               </h1>
               <div className="flex items-center space-x-2">
                 <div className="w-1 h-1 rounded-full bg-blue-400 animate-pulse"></div>
@@ -88,7 +88,7 @@ const Navbar = () => {
               </div>
             </div>
             <div className="sm:hidden">
-              <h1 className="text-base font-bold text-white">MLSA</h1>
+              <h1 className="text-base font-bold text-white">MSA</h1>
             </div>
           </div>
 
