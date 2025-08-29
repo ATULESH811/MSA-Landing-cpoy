@@ -62,9 +62,19 @@ const Events: React.FC = () => {
       title: "Get Together Session",
       date: "27th February 2025",
       description: "A fun-filled session designed to connect, interact, and engage with each other while enjoying exciting games and activities.",
-      image: "/images/IMG_4.jpg",
+      image: "/images/IMG_6.jpg",
       status: 'past',
       category: "Networking",
+      attendees: 65,
+      duration: "3 hours"
+    },
+    {
+      title: "FIFS Gamethon ",
+      date: "27th February 2025",
+      description: "A thrilling gaming event featuring popular games like Valorant, FIFA, and Among Us with exciting prizes.",
+      image: "/images/IMG_8.png",
+      status: 'past',
+      category: "Competition",
       attendees: 65,
       duration: "3 hours"
     },

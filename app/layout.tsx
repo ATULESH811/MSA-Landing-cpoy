@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   description: "Microsoft Learn Student Ambassadors IIIT Dharwad Chapter",
   icons: {
     icon: [
-      { url: "/images/Logo.jpeg" }
+      { url: "/images/Logo2.jpg" }
     ],
   },
 };

@@ -61,30 +61,32 @@ const Navbar = () => {
         <div className="relative flex justify-between items-center">
           {/* Sleek Logo Section */}
           <div className="flex items-center space-x-3 group cursor-pointer">
-           <div className="relative transform transition-all duration-500 group-hover:scale-110 group-hover:rotate-12">
-            {/* Outer gradient border */}
-            <div
-              className={`w-10 h-10 rounded-xl transition-all duration-700 ${
-                isScrolled
-                  ? "bg-gradient-to-br from-blue-600 to-indigo-700 shadow-lg"
-                  : "bg-gradient-to-br from-blue-500 to-purple-600 shadow-xl"
-              }`}
-            >
-              {/* Inner white container */}
-              <div className="absolute inset-0.5 bg-white rounded-lg flex items-center justify-center overflow-hidden">
-                {/* Image with white background */}
-                <img
-                  src="/images/Logo.jpeg"
-                  alt="Logo"
-                  className="w-6 h-6 object-contain"
-                />
+            <div className="relative transform transition-all duration-500 group-hover:scale-110 group-hover:rotate-12">
+              {/* Outer gradient border */}
+              <div
+                className={`w-10 h-10 rounded-xl transition-all duration-700 ${
+                  isScrolled
+                    ? "bg-gradient-to-br from-blue-600 to-indigo-700 shadow-lg"
+                    : "bg-gradient-to-br from-blue-500 to-purple-600 shadow-xl"
+                }`}
+              >
+                {/* Inner white container */}
+                <div className="absolute inset-0.5 bg-white rounded-lg flex items-center justify-center overflow-hidden">
+                  {/* Image with perfect fit */}
+                  <img
+                    src="/images/Logo2.jpg"
+                    alt="Logo"
+                    className="w-full h-full object-contain p-1"
+                  />
+                </div>
               </div>
-            </div>
 
-            {/* Green ping animation */}
-            <div className="absolute -top-1 -right-1 w-3 h-3 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full animate-ping opacity-75"></div>
-            <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full shadow-lg"></div>
-          </div>
+              {/* Green ping animation */}
+              <div className="absolute -top-1 -right-1 w-3 h-3 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full animate-ping opacity-75"></div>
+              <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full shadow-lg"></div>
+            </div>
+          
+
 
             <div className="hidden sm:block">
               <h1 className="text-lg font-bold tracking-tight text-white">
