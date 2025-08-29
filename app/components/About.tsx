@@ -106,6 +106,14 @@ const About: React.FC = () => {
           
         </div>
 
+          
+
+
+
+
+      <br/> 
+      <br/> 
+
         {/* Event Slideshow */}
         <div className="mb-20 animate-fade-in-up">
           <div className="relative h-[600px] rounded-xl overflow-hidden shadow-2xl group border border-cyan-400/20">
@@ -185,6 +193,37 @@ const About: React.FC = () => {
           </div>
         </div>
 
+
+        
+        <div className="max-w-4xl mx-auto p-10 bg-gray-900 border-l-4 border-r-4 border-cyan-500 rounded-3xl shadow-[10_10_10px_cyan] text-white relative overflow-hidden animate-fade-in-up">
+            {/* Terminal-style header */}
+            <div className="flex items-center space-x-2 mb-6 px-4 py-2 text-xs font-mono">
+              <span className="w-3 h-3 bg-red-500 rounded-full"></span>
+              <span className="w-3 h-3 bg-yellow-500 rounded-full"></span>
+              <span className="w-3 h-3 bg-green-500 rounded-full"></span>
+              <span className="ml-4 font-semibold text-cyan-400">~/msla/iiit-dharwad/about-us</span>
+            </div>
+
+            {/* Terminal body with animated neon highlights */}
+            <div className="font-mono text-cyan-300 text-lg space-y-2">
+              <p>
+                <span className="text-green-400 animate-pulse">➜</span> The Microsoft Student Ambassadors (MSA) program is a global initiative by Microsoft to empower students with technical skills, leadership opportunities, and a platform to innovate.
+              </p>
+              <br/>
+              <p>
+                <span className="text-green-400 animate-pulse">➜</span> The MSA IIIT Dharwad Chapter is a student-driven community aimed at fostering a culture of learning, innovation, and collaboration among students.
+              </p>
+            </div>
+
+            {/* Neon border corner accents */}
+            <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-cyan-400 rounded-bl-lg animate-pulse"></div>
+            <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-purple-400 rounded-br-lg animate-pulse" style={{animationDelay: '0.3s'}}></div>
+            <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-blue-400 rounded-tl-lg animate-pulse" style={{animationDelay: '0.6s'}}></div>
+            <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-pink-400 rounded-tr-lg animate-pulse" style={{animationDelay: '0.9s'}}></div>
+          </div>
+        <br />
+        <br />
+
         {/* Founder Section */}
         <div className="bg-gray-900/80 backdrop-blur-xl border border-cyan-400/30 rounded-2xl p-8 md:p-12 shadow-xl shadow-cyan-500/10 animate-fade-in-up">
           <h3 className="text-2xl md:text-3xl font-bold mb-8 text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">
@@ -194,13 +233,13 @@ const About: React.FC = () => {
             <div className="relative">
               <div className="w-48 h-48 mx-auto md:mx-0 rounded-full overflow-hidden border-4 border-cyan-500/30 shadow-lg shadow-cyan-500/20">
                 <img 
-                  src="/images/AJ.jpg" 
+                  src="/images/AJ2.png" 
                   alt="Aryan Jaiswal" 
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="absolute -bottom-2 -right-2 bg-cyan-600 text-white text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">
-                <span className="text-yellow-400">gold</span>-MSA
+                <span className="text-yellow-400">GOLD</span>-MSA
               </div>
               {/* Glow effect */}
               <div className="absolute -inset-4 bg-cyan-500/20 rounded-full blur-xl -z-10"></div>
@@ -208,10 +247,11 @@ const About: React.FC = () => {
             
             <div className="flex-1 text-center md:text-left">
               <h4 className="text-2xl font-bold text-white mb-2">Aryan Jaiswal</h4>
-              <p className="text-cyan-300 mb-4">Founder & Microsoft Student Ambassador</p>
+              <p className="text-cyan-300 mb-4">Founder, Former Lead & <span className='text-yellow-400'>GOLD</span> Microsoft Student Ambassador</p>
               <p className="text-gray-300 leading-relaxed">
                 Passionate about AI, Web Development, and Community Building. I am a B.Tech student specializing in full-stack development, AI/ML, and cloud technologies. With hands-on experience in building impactful projects and mentoring students, I aim to create a thriving tech community at IIIT Dharwad.
               </p>
+
               <div className="mt-6 flex flex-wrap gap-3 justify-center md:justify-start">
                 <a 
                   href="https://www.linkedin.com/in/aryanjstar/" 
@@ -222,6 +262,16 @@ const About: React.FC = () => {
                   <span className="relative z-10">Connect on LinkedIn</span>
                   <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </a>
+                <a 
+                  href="https://aryanjaiswal.netlify.app/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="relative overflow-hidden flex items-center gap-2 bg-gradient-to-r from-purple-600 to-pink-500 backdrop-blur-sm border border-pink-400/40 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-500 hover:border-pink-300 hover:scale-105 group"
+                >
+                  <span className="relative z-10">Portfolio</span>
+                  <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </a>
+
                 <a 
                   href="https://github.com/aryanjstar" 
                   target="_blank" 
@@ -252,7 +302,7 @@ const About: React.FC = () => {
                 />
               </div>
               <div className="absolute -bottom-2 -right-2 bg-cyan-600 text-white text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">
-                <span className="text-cyan-400">alpha</span>-MSA
+                <span className="text-cyan-400"></span>MSA
               </div>
               {/* Glow effect */}
               <div className="absolute -inset-4 bg-cyan-500/20 rounded-full blur-xl -z-10"></div>
@@ -288,6 +338,8 @@ const About: React.FC = () => {
 
           </div>
         </div>
+
+        
       </div>
 
       <style jsx>{`

@@ -123,17 +123,34 @@ const Navbar = () => {
             ))}
             
             {/* Floating CTA Button */}
-            <div className="ml-4">
-              <button className="relative px-6 py-2.5 rounded-full font-bold text-sm uppercase tracking-wider transition-all duration-500 transform hover:scale-110 overflow-hidden group bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg hover:shadow-2xl hover:shadow-blue-500/25">
-                <div className="relative z-10 flex items-center space-x-2">
-                  <span>Join</span>
-                  <div className="w-4 h-4 rounded-full bg-white/20 flex items-center justify-center">
-                    <div className="w-2 h-2 bg-white rounded-full"></div>
-                  </div>
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
-              </button>
-            </div>
+           <div className="ml-4">
+            <a
+              href="https://chat.whatsapp.com/HiE8qUaaIpYJNA5WPuCozD"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative px-6 py-2.5 rounded-full font-bold text-sm uppercase tracking-wider transition-all duration-500 transform hover:scale-110 overflow-hidden group bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg hover:shadow-2xl hover:shadow-blue-500/25 flex items-center"
+            >
+              {/* Inner Content */}
+              <div className="relative z-10 flex items-center space-x-2">
+                {/* WhatsApp Icon */}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="w-5 h-5 text-white"
+                >
+                  <path d="M20.52 3.48A11.84 11.84 0 0 0 12 .64 11.82 11.82 0 0 0 .64 12c0 2.08.54 4.11 1.57 5.9L.27 23.36a.75.75 0 0 0 .94.94l5.46-1.94A11.84 11.84 0 0 0 12 23.36c6.55 0 11.84-5.29 11.84-11.84 0-3.17-1.23-6.15-3.32-8.32zM12 21.86c-1.89 0-3.73-.49-5.35-1.43a.75.75 0 0 0-.63-.07l-4.5 1.6 1.6-4.5a.75.75 0 0 0-.07-.63A9.82 9.82 0 0 1 2.14 12C2.14 6.62 6.62 2.14 12 2.14S21.86 6.62 21.86 12 17.38 21.86 12 21.86zM16.91 14.7c-.28-.14-1.65-.81-1.9-.9-.25-.09-.43-.14-.6.14-.18.28-.69.9-.85 1.08-.16.18-.32.2-.6.07a7.97 7.97 0 0 1-2.34-1.45 8.77 8.77 0 0 1-1.62-2c-.17-.3 0-.46.13-.6.14-.14.3-.36.45-.54.15-.18.2-.31.3-.52.1-.21.05-.39-.02-.54-.07-.14-.6-1.45-.82-1.99-.22-.53-.44-.46-.6-.47h-.52c-.18 0-.46.07-.7.34-.24.28-.92.9-.92 2.18 0 1.28.94 2.51 1.07 2.68.14.18 1.86 2.83 4.52 3.96 2.67 1.13 2.67.76 3.15.71.48-.05 1.64-.67 1.87-1.32.23-.65.23-1.2.16-1.32-.07-.12-.25-.18-.53-.32z" />
+                </svg>
+
+                <span>Join</span>
+              </div>
+
+              {/* Hover Effect Background */}
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+            </a>
+          </div>
+
+
           </div>
 
           {/* Mobile Menu Button */}
