@@ -11,7 +11,7 @@ const Footer: React.FC = () => {
         
         {/* Left Section */}
         <p className="text-sm text-gray-300">
-          © {currentYear} <span className="font-semibold">MLSA IIIT Dharwad</span> | 
+          © {currentYear} <span className="font-semibold">msa IIIT Dharwad</span> | 
           Designed by <span className="text-white font-semibold">Sai Sathwik</span> | 
           Developed by <span className="text-white font-semibold">Harshith D</span>
         </p>
@@ -38,7 +38,7 @@ const Footer: React.FC = () => {
 
       {/* Bottom Divider */}
       <div className="mt-6 border-t border-gray-700 pt-4 text-center text-xs text-gray-500">
-        Made with ❤️ by the MLSA IIIT Dharwad Community
+        Made with ❤️ by the msa IIIT Dharwad Community
       </div>
     </footer>
   );

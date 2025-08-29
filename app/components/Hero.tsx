@@ -84,7 +84,7 @@ const Hero = () => {
               
               <h1 className="relative text-4xl md:text-6xl font-black mb-3 leading-tight animate-slide-up">
                 <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 animate-gradient-text">
-                  MLSA
+                  MSA
                 </span>
                 {' '}
                 <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-cyan-400 animate-gradient-text-delayed">
@@ -138,7 +138,7 @@ const Hero = () => {
                 rel="noopener noreferrer"
                 className="relative overflow-hidden bg-gradient-to-r from-cyan-600 via-blue-600 to-purple-600 text-white font-bold py-4 px-8 rounded-xl transition-all duration-500 shadow-xl hover:shadow-2xl hover:shadow-cyan-500/30 transform hover:scale-105 animate-button-glow group"
               >
-                <span className="relative z-10">Become an MLSA</span>
+                <span className="relative z-10">Become an msa</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </a>
               <a

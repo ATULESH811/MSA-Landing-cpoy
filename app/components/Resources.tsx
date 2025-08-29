@@ -41,8 +41,8 @@ const Resources: React.FC = () => {
       duration: "12 hours"
     },
     {
-      title: "MLSA Contributor ID Guide",
-      description: "Learn how to use, curate and share your MLSA Contributor ID effectively.",
+      title: "msa Contributor ID Guide",
+      description: "Learn how to use, curate and share your msa Contributor ID effectively.",
       link: "https://stdntpartners.sharepoint.com/sites/SAProgramHandbook/SitePages/Need-content-to-use-with-your-Sharing-ID-(1).aspx/?wt.mc_id=studentamb_360446",
       category: "Community",
       level: "beginner",

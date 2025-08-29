@@ -7,6 +7,9 @@ interface Event {
   image?: string;
   status: 'past' | 'upcoming';
   category?: string;
+  registrationLink?: string;
+  attendees?: number;
+  duration?: string;
 }
 
 const Events: React.FC = () => {
@@ -15,9 +18,14 @@ const Events: React.FC = () => {
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
   const [isScrolling, setIsScrolling] = useState(false);
+  const [viewMode, setViewMode] = useState<'timeline' | 'grid'>('timeline');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [autoPlay, setAutoPlay] = useState(true);
   const timelineRef = useRef<HTMLDivElement>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const animationFrameRef = useRef<number | null>(null);
+  const autoPlayRef = useRef<NodeJS.Timeout | null>(null);
 
   const events: Event[] = [
     {
@@ -26,7 +34,9 @@ const Events: React.FC = () => {
       description: "An event focusing on how to be an MLSA and hands-on experience with Git and GitHub.",
       image: "/images/IMG_1.jpg",
       status: 'past',
-      category: "Workshop"
+      category: "Workshop",
+      attendees: 120,
+      duration: "2 hours"
     },
     {
       title: "Establishment of MLSA Chapter",
@@ -34,7 +44,9 @@ const Events: React.FC = () => {
       description: "An offline event introducing the MLSA program, its tiers, benefits, & how you can be a part of it.",
       image: "/images/IMG_2.jpg",
       status: 'past',
-      category: "Official Launch"
+      category: "Official Launch",
+      attendees: 85,
+      duration: "1.5 hours"
     },
     {
       title: "Kickstart Your Web Dev Journey",
@@ -42,73 +54,120 @@ const Events: React.FC = () => {
       description: "An online event providing an overview and roadmap of web development technologies.",
       image: "/images/IMG_3.jpg",
       status: 'past',
-      category: "Webinar"
+      category: "Webinar",
+      attendees: 200,
+      duration: "2 hours"
     },
     {
       title: "Get Together Session",
-      date: "5th February 2025",
+      date: "27th February 2025",
       description: "A fun-filled session designed to connect, interact, and engage with each other while enjoying exciting games and activities.",
       image: "/images/IMG_4.jpg",
       status: 'past',
-      category: "Networking"
+      category: "Networking",
+      attendees: 65,
+      duration: "3 hours"
     },
     {
       title: "UI/UX Designing Workshop",
-      date: "Coming Soon",
+      date: "5th February 2025",
       description: "Learn the fundamentals of UI/UX design and get hands-on experience with Figma.",
-      status: 'upcoming',
-      category: "Workshop"
+      status: 'past',
+      category: "Workshop",
+      attendees: 90,
+      duration: "2.5 hours"
     },
     {
       title: "Open Source Workshop",
       date: "Coming Soon",
       description: "Explore the world of open-source development and learn how to contribute effectively.",
       status: 'upcoming',
-      category: "Workshop"
+      category: "Workshop",
+      registrationLink: "#register",
+      duration: "3 hours"
     },
     {
       title: "IoT-Powered Smart Robot Car Workshop",
-      date: "5th - 6th March 2025",
+      date: "12th-13th March 2025",
       description: "Build a smart robotic car using ESP8266/ESP32 and essential electronic components.",
       status: 'upcoming',
-      category: "Hands-on"
+      category: "Hands-on",
+      registrationLink: "#register",
+      duration: "6 hours"
     },
     {
       title: "MLSA Logic League 1.0",
       date: "7th March 2025",
       description: "A competitive programming event featuring debugging and coding contests.",
-      status: 'upcoming',
-      category: "Competition"
+      status: 'past',
+      category: "Competition",
+      attendees: 45,
+      duration: "4 hours"
     },
     {
-      title: "Vedic Coding",
-      date: "10th March 2025",
-      description: "Integrate traditional Vedic mathematical algorithms with modern programming techniques.",
+      title: "MLSA Logic League 2.0",
+      date: "28th March 2025",
+      description: "A competitive programming event featuring debugging and coding contests.",
       status: 'upcoming',
-      category: "Workshop"
+      category: "Competition",
+      registrationLink: "#register",
+      duration: "4 hours"
     },
     {
-      title: "ModelCraft: Hands-on ML Workshop",
-      date: "12th March 2025",
-      description: "Work on a guided AI/ML project and implement a real-world solution.",
+      title: "Cybersecurity Basics",
+      date: "Coming Soon",
+      description: "An insightful session with a seasoned Cybersecurity Expert.",
       status: 'upcoming',
-      category: "AI/ML"
+      category: "Expert Session",
+      registrationLink: "#register",
+      duration: "2 hours"
     },
     {
-      title: "Data Duel - AI/ML Showdown",
-      date: "13th March 2025",
-      description: "Test your AI/ML knowledge and model-building capabilities in this competitive event.",
+      title: "DSA Masterclass",
+      date: "Coming Soon",
+      description: "A comprehensive workshop on Data Structures and Algorithms.",
       status: 'upcoming',
-      category: "Competition"
+      category: "Expert Session",
+      registrationLink: "#register",
+      duration: "3 hours"
     },
     {
       title: "Cybersecurity Unplugged",
       date: "15th March 2025",
       description: "An insightful session with a seasoned Cybersecurity Expert.",
       status: 'upcoming',
-      category: "Expert Session"
+      category: "Expert Session",
+      registrationLink: "#register",
+      duration: "2 hours"
     }
   ];
+
+  // Get unique categories for filtering
+  const categories = ['all', ...new Set(events.map(event => event.category || 'Uncategorized'))];
+
+  // Filter events based on search and category
+  const filteredEvents = events.filter(event => {
+    const matchesSearch = searchQuery === '' || 
+      event.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      event.description.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesCategory = selectedCategory === 'all' || event.category === selectedCategory;
+    return matchesSearch && matchesCategory;
+  });
+
+  // Auto-play functionality
+  useEffect(() => {
+    if (autoPlay && viewMode === 'timeline') {
+      autoPlayRef.current = setInterval(() => {
+        setActiveEvent(prev => (prev + 1) % filteredEvents.length);
+      }, 5000);
+    }
+    
+    return () => {
+      if (autoPlayRef.current) {
+        clearInterval(autoPlayRef.current);
+      }
+    };
+  }, [autoPlay, filteredEvents.length, viewMode]);
 
   // Smooth scroll to position with spring effect
   const smoothScrollTo = (target: number, duration: number = 700) => {
@@ -247,7 +306,7 @@ const Events: React.FC = () => {
 
   // Auto-scroll to active event
   useEffect(() => {
-    if (timelineRef.current && !isDragging) {
+    if (timelineRef.current && !isDragging && viewMode === 'timeline') {
       const eventElements = timelineRef.current.querySelectorAll('.event-card');
       const eventElement = eventElements[activeEvent] as HTMLElement;
       
@@ -256,7 +315,7 @@ const Events: React.FC = () => {
         smoothScrollTo(targetScroll);
       }
     }
-  }, [activeEvent, isDragging]);
+  }, [activeEvent, isDragging, viewMode]);
 
   // Clean up on unmount
   useEffect(() => {
@@ -267,13 +326,16 @@ const Events: React.FC = () => {
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
+      if (autoPlayRef.current) {
+        clearInterval(autoPlayRef.current);
+      }
     };
   }, []);
 
   const EventCard: React.FC<{ event: Event; index: number }> = ({ event, index }) => (
     <div 
       className={`event-card relative flex-shrink-0 w-80 h-96 mx-4 transition-all duration-500 cursor-pointer ${
-        activeEvent === index ? 'scale-105 z-10' : 'scale-95 opacity-80'
+        activeEvent === index && viewMode === 'timeline' ? 'scale-105 z-10' : 'scale-95 opacity-80'
       }`}
       onClick={() => !isScrolling && setActiveEvent(index)}
     >
@@ -281,7 +343,7 @@ const Events: React.FC = () => {
         event.status === 'past' 
           ? 'bg-blue-900/30 border-blue-700/50 shadow-lg shadow-blue-500/20' 
           : 'bg-purple-900/30 border-purple-700/50 shadow-lg shadow-purple-500/20'
-      } ${activeEvent === index ? 'ring-2 ring-cyan-400/50' : ''}`}>
+      } ${activeEvent === index && viewMode === 'timeline' ? 'ring-2 ring-cyan-400/50' : ''}`}>
         {/* Event image or placeholder */}
         <div className="h-40 relative overflow-hidden">
           {event.image ? (
@@ -322,14 +384,101 @@ const Events: React.FC = () => {
           </div>
           <p className="text-gray-300 mb-6 flex-grow">{event.description}</p>
           
-          {event.status === 'upcoming' && (
-            <button className="mt-auto relative overflow-hidden bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-cyan-500/30 group">
+          {/* Event metadata */}
+          <div className="flex justify-between items-center mb-4 text-sm text-cyan-300">
+            {event.duration && (
+              <div className="flex items-center">
+                <i className="fas fa-clock mr-1"></i>
+                <span>{event.duration}</span>
+              </div>
+            )}
+            {event.attendees && (
+              <div className="flex items-center">
+                <i className="fas fa-users mr-1"></i>
+                <span>{event.attendees} attendees</span>
+              </div>
+            )}
+          </div>
+          
+          {event.status === 'upcoming' ? (
+            <a
+              href={event.registrationLink || "#register"}
+              className="mt-auto relative overflow-hidden bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-cyan-500/30 group text-center"
+            >
               <span className="relative z-10">Register Now</span>
               <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            </button>
+            </a>
+          ) : (
+            <div className="mt-auto flex items-center justify-between text-sm text-gray-400">
+              <span>Event completed</span>
+              <button className="text-cyan-400 hover:text-cyan-300 transition-colors">
+                View Photos <i className="fas fa-external-link-alt ml-1"></i>
+              </button>
+            </div>
           )}
         </div>
       </div>
+    </div>
+  );
+
+  const EventGrid: React.FC = () => (
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+      {filteredEvents.map((event, index) => (
+        <div
+          key={index}
+          className="bg-gradient-to-br from-gray-900/70 to-gray-800/70 border border-cyan-400/30 rounded-2xl overflow-hidden backdrop-blur-md transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/20"
+        >
+          <div className="h-48 relative overflow-hidden">
+            {event.image ? (
+              <img 
+                src={event.image} 
+                alt={event.title} 
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              <div className={`w-full h-full flex items-center justify-center ${
+                event.status === 'past' ? 'bg-blue-800/50' : 'bg-purple-800/50'
+              }`}>
+                <div className="text-4xl">
+                  {event.status === 'past' ? '📅' : '🚀'}
+                </div>
+              </div>
+            )}
+            <div className="absolute top-4 right-4 bg-black/70 text-white px-3 py-1 rounded-full text-sm backdrop-blur-sm border border-cyan-400/30">
+              {event.category}
+            </div>
+            <div className={`absolute top-4 left-4 px-3 py-1 rounded-full text-sm font-medium backdrop-blur-sm border ${
+              event.status === 'past' 
+                ? 'bg-green-500/90 text-white border-green-400/50' 
+                : 'bg-yellow-500/90 text-black border-yellow-400/50'
+            }`}>
+              {event.status === 'past' ? 'Completed' : 'Upcoming'}
+            </div>
+          </div>
+          
+          <div className="p-6">
+            <h3 className="text-lg font-bold mb-2 text-white">{event.title}</h3>
+            <div className="flex items-center mb-3 text-cyan-300 text-sm">
+              <i className="fas fa-calendar-alt mr-2"></i>
+              <span>{event.date}</span>
+            </div>
+            <p className="text-gray-300 text-sm mb-4">{event.description}</p>
+            
+            {event.status === 'upcoming' ? (
+              <a
+                href={event.registrationLink || "#register"}
+                className="w-full bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-medium py-2 px-4 rounded-lg transition-all duration-300 text-center block"
+              >
+                Register Now
+              </a>
+            ) : (
+              <div className="text-center text-gray-400 text-sm">
+                Event completed
+              </div>
+            )}
+          </div>
+        </div>
+      ))}
     </div>
   );
 
@@ -357,7 +506,7 @@ const Events: React.FC = () => {
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-16 animate-fade-in">
+        <div className="text-center mb-8 animate-fade-in">
           <h2 className="text-4xl md:text-5xl font-black mb-6">
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400">
               Events Timeline
@@ -370,95 +519,204 @@ const Events: React.FC = () => {
           </div>
           
           <p className="text-lg text-gray-300 max-w-3xl mx-auto backdrop-blur-sm bg-gray-900/30 p-4 rounded-xl border border-cyan-400/20">
-            Explore our past achievements and upcoming events. Scroll horizontally to navigate through our timeline.
+            Explore our past achievements and upcoming events. {viewMode === 'timeline' ? 'Scroll horizontally' : 'Browse the grid'} to navigate through our timeline.
           </p>
         </div>
 
-        {/* Timeline navigation */}
-        <div className="flex justify-center mb-10">
-          <div className="bg-gray-800/50 rounded-full p-2 flex backdrop-blur-sm border border-cyan-400/20">
-            <button 
-              onClick={() => setActiveEvent(prev => Math.max(0, prev - 1))}
-              disabled={activeEvent === 0 || isScrolling}
-              className="px-4 py-2 rounded-full bg-gray-700/80 hover:bg-cyan-600/80 transition-colors mr-2 disabled:opacity-50 disabled:cursor-not-allowed text-white"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-            <div className="flex items-center px-4">
-              <span className="text-cyan-400 font-medium">{activeEvent + 1}</span>
-              <span className="text-gray-400 mx-2">/</span>
-              <span className="text-gray-400">{events.length}</span>
-            </div>
-            <button 
-              onClick={() => setActiveEvent(prev => Math.min(events.length - 1, prev + 1))}
-              disabled={activeEvent === events.length - 1 || isScrolling}
-              className="px-4 py-2 rounded-full bg-gray-700/80 hover:bg-cyan-600/80 transition-colors ml-2 disabled:opacity-50 disabled:cursor-not-allowed text-white"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-          </div>
+        
+        {/* Results Count */}
+        <div className="text-cyan-300 mb-6 text-center">
+          Showing {filteredEvents.length} of {events.length} events
         </div>
 
-        {/* Timeline container */}
-        <div className="relative">
-          {/* Timeline line with gradient animation */}
-          <div className="absolute left-0 right-0 top-40 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 opacity-30">
-            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-40 animate-pulse"></div>
-          </div>
-          
-          {/* Scrollable timeline */}
-          <div 
-            ref={timelineRef}
-            className="flex overflow-x-auto py-10 px-4 scrollbar-hide"
-            onMouseDown={handleMouseDown}
-            onMouseLeave={handleMouseLeave}
-            onMouseUp={handleMouseUp}
-            onMouseMove={handleMouseMove}
-            onTouchStart={handleTouchStart}
-            onTouchEnd={handleTouchEnd}
-            onTouchMove={handleTouchMove}
-            style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
-          >
-            <div className="flex items-center">
-              {events.map((event, index) => (
-                <React.Fragment key={index}>
-                  <EventCard event={event} index={index} />
-                  {/* Connector line between events with animation */}
-                  {index < events.length - 1 && (
-                    <div className="flex items-center justify-center w-16 relative">
-                      <div className="w-0.5 h-16 bg-gradient-to-b from-cyan-500 to-purple-500 opacity-30"></div>
-                      <div className="absolute w-4 h-4 rounded-full bg-gradient-to-r from-cyan-500 to-purple-500 flex items-center justify-center">
-                        <div className="w-2 h-2 rounded-full bg-white animate-ping opacity-75"></div>
-                      </div>
-                    </div>
-                  )}
-                </React.Fragment>
-              ))}
+        {viewMode === 'timeline' ? (
+          <>
+            {/* Timeline navigation */}
+            <div className="flex justify-center mb-10">
+              <div className="bg-gray-800/50 rounded-full p-2 flex backdrop-blur-sm border border-cyan-400/20">
+                <button 
+                  onClick={() => setActiveEvent(prev => Math.max(0, prev - 1))}
+                  disabled={activeEvent === 0 || isScrolling}
+                  className="px-4 py-2 rounded-full bg-gray-700/80 hover:bg-cyan-600/80 transition-colors mr-2 disabled:opacity-50 disabled:cursor-not-allowed text-white"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+                <div className="flex items-center px-4">
+                  <span className="text-cyan-400 font-medium">{activeEvent + 1}</span>
+                  <span className="text-gray-400 mx-2">/</span>
+                  <span className="text-gray-400">{filteredEvents.length}</span>
+                </div>
+                <button 
+                  onClick={() => setActiveEvent(prev => Math.min(filteredEvents.length - 1, prev + 1))}
+                  disabled={activeEvent === filteredEvents.length - 1 || isScrolling}
+                  className="px-4 py-2 rounded-full bg-gray-700/80 hover:bg-cyan-600/80 transition-colors ml-2 disabled:opacity-50 disabled:cursor-not-allowed text-white"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
             </div>
-          </div>
-        </div>
 
-        {/* Event indicator dots */}
-        <div className="flex justify-center mt-8">
-          <div className="flex space-x-3">
-            {events.map((_, index) => (
+            {/* Timeline container */}
+            <div className="relative">
+              {/* Timeline line with gradient animation */}
+              <div className="absolute left-0 right-0 top-40 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 opacity-30">
+                <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-40 animate-pulse"></div>
+              </div>
+              
+              {/* Scrollable timeline */}
+              <div 
+                ref={timelineRef}
+                className="flex overflow-x-auto py-10 px-4 scrollbar-hide"
+                onMouseDown={handleMouseDown}
+                onMouseLeave={handleMouseLeave}
+                onMouseUp={handleMouseUp}
+                onMouseMove={handleMouseMove}
+                onTouchStart={handleTouchStart}
+                onTouchEnd={handleTouchEnd}
+                onTouchMove={handleTouchMove}
+                style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
+              >
+                <div className="flex items-center">
+                  {filteredEvents.map((event, index) => (
+                    <React.Fragment key={index}>
+                      <EventCard event={event} index={index} />
+                      {/* Connector line between events with animation */}
+                      {index < filteredEvents.length - 1 && (
+                        <div className="flex items-center justify-center w-16 relative">
+                          <div className="w-0.5 h-16 bg-gradient-to-b from-cyan-500 to-purple-500 opacity-30"></div>
+                          <div className="absolute w-4 h-4 rounded-full bg-gradient-to-r from-cyan-500 to-purple-500 flex items-center justify-center">
+                            <div className="w-2 h-2 rounded-full bg-white animate-ping opacity-75"></div>
+                          </div>
+                        </div>
+                      )}
+                    </React.Fragment>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Event indicator dots */}
+            {/* <div className="flex justify-center mt-8">
+              <div className="flex space-x-3">
+                {filteredEvents.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => !isScrolling && setActiveEvent(index)}
+                    disabled={isScrolling}
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                      activeEvent === index 
+                        ? 'bg-gradient-to-r from-cyan-500 to-purple-500 scale-125' 
+                        : 'bg-gray-600 hover:bg-gray-500'
+                    } ${isScrolling ? 'opacity-50' : ''}`}
+                  ></button>
+                ))}
+              </div>
+            </div> */}
+          </>
+        ) : (
+          <EventGrid />
+        )}
+
+        {/* Controls Section */}
+        <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4 bg-gray-900/50 backdrop-blur-xl rounded-2xl p-4 border border-cyan-400/20">
+          {/* View Toggle */}
+          <div className="flex items-center">
+            <span className="text-cyan-300 mr-3">View:</span>
+            <div className="flex bg-gray-800/70 rounded-lg p-1">
               <button
-                key={index}
-                onClick={() => !isScrolling && setActiveEvent(index)}
-                disabled={isScrolling}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  activeEvent === index 
-                    ? 'bg-gradient-to-r from-cyan-500 to-purple-500 scale-125' 
-                    : 'bg-gray-600 hover:bg-gray-500'
-                } ${isScrolling ? 'opacity-50' : ''}`}
-              ></button>
-            ))}
+                onClick={() => setViewMode('timeline')}
+                className={`px-4 py-2 rounded-md transition-all duration-300 ${
+                  viewMode === 'timeline' 
+                    ? 'bg-cyan-600 text-white shadow-lg' 
+                    : 'text-cyan-300 hover:text-white'
+                }`}
+              >
+                <i className="fas fa-timeline mr-2"></i>Timeline
+              </button>
+              <button
+                onClick={() => setViewMode('grid')}
+                className={`px-4 py-2 rounded-md transition-all duration-300 ${
+                  viewMode === 'grid' 
+                    ? 'bg-cyan-600 text-white shadow-lg' 
+                    : 'text-cyan-300 hover:text-white'
+                }`}
+              >
+                <i className="fas fa-th-large mr-2"></i>Grid
+              </button>
+            </div>
+          </div>
+
+          {/* Search and Filter */}
+          <div className="flex flex-col sm:flex-row gap-3">
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <i className="fas fa-search text-cyan-400"></i>
+              </div>
+              <input
+                type="text"
+                placeholder="Search events..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-10 pr-4 py-2 bg-gray-800/70 border border-cyan-400/30 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all duration-300"
+              />
+            </div>
+            
+            <select
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
+              className="px-4 py-2 bg-gray-800/70 border border-cyan-400/30 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all duration-300"
+            >
+              {categories.map(category => (
+                <option key={category} value={category}>
+                  {category}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Auto-play Toggle */}
+          {viewMode === 'timeline' && (
+            <div className="flex items-center">
+              <span className="text-cyan-300 mr-3">Auto-play:</span>
+              <label className="relative inline-flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={autoPlay}
+                  onChange={() => setAutoPlay(!autoPlay)}
+                  className="sr-only peer"
+                />
+                <div className="w-11 h-6 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-cyan-600"></div>
+              </label>
+            </div>
+          )}
+        </div>
+
+
+        {/* Calendar Integration */}
+        <div className="mt-16 bg-gray-900/50 backdrop-blur-xl rounded-2xl p-6 border border-cyan-400/20">
+          <h3 className="text-2xl font-bold mb-6 text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">
+            Subscribe to Our Calendar
+          </h3>
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+            <p className="text-gray-300 flex-1">
+              Never miss an event! Subscribe to our calendar and get automatic updates for all upcoming events.
+            </p>
+            <div className="flex gap-3">
+              <button className="px-6 py-3 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-medium rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-cyan-500/30">
+                <i className="fab fa-google mr-2"></i>Google Calendar
+              </button>
+              <button className="px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-medium rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-purple-500/30">
+                <i className="fas fa-calendar-alt mr-2"></i>iCalendar
+              </button>
+            </div>
           </div>
         </div>
+
+
       </div>
 
       <style jsx>{`
