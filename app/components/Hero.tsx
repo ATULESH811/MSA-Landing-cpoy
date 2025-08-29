@@ -107,16 +107,24 @@ const Hero = () => {
 
               {/* Futuristic Mission Statement */}
               <div className="relative mb-10 mt-10 animate-fade-in-up">
+                {/* Background Glow */}
                 <div className="absolute -inset-4 bg-gradient-to-r from-cyan-600/25 via-blue-600/25 to-purple-600/25 rounded-xl blur-lg opacity-60 animate-pulse-glow"></div>
-                
-                <div className="relative bg-gray-900/80 backdrop-blur-xl border border-cyan-400/30 rounded-xl p-6 shadow-2xl shadow-cyan-500/10">
-                  <p className="text-2xl md:text-3xl font-light text-white italic mb-2 animate-text-glow">
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-emerald-300 to-rose-300 font-semibold">
-                      &ldquo;Be a force for good!&rdquo;
-                    </span>
-                  </p>
-                  <div className="text-cyan-300 text-sm font-medium font-mono">
-                    Our guiding principle
+
+                {/* Terminal Container */}
+                <div className="relative bg-gray-900/90 backdrop-blur-xl border border-cyan-400/30 rounded-xl shadow-2xl shadow-cyan-500/10 overflow-hidden">
+                  
+                  {/* Terminal Header */}
+                  <div className="flex items-center space-x-2 px-4 py-2 bg-gray-800 border-b border-gray-700 text-gray-300 text-xs font-mono">
+                    <span className="w-3 h-3 bg-red-500 rounded-full"></span>
+                    <span className="w-3 h-3 bg-yellow-500 rounded-full"></span>
+                    <span className="w-3 h-3 bg-green-500 rounded-full"></span>
+                    <span className="ml-4">~/goodness/mission</span>
+                  </div>
+
+                  {/* Terminal Body */}
+                  <div className="p-6 font-mono text-cyan-300 text-lg">
+                    <p><span className="text-green-400">➜</span> echo "<span className="animate-gradient-text bg-gradient-to-r from-cyan-400 via-emerald-300 to-rose-400 bg-clip-text text-transparent font-semibold">Be a force for good!</span>"</p>
+                    <p className="text-emerald-300 mt-2">Be a force for good!</p>
                   </div>
                 </div>
               </div>
@@ -304,6 +312,16 @@ const Hero = () => {
           0%, 100% { transform: translateY(0px); }
           50% { transform: translateY(-2px); }
         }
+
+        @keyframes gradient {
+          0%, 100% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+        }
+        .animate-gradient-text {
+          background-size: 200% 200%;
+          animation: gradient 3s ease infinite;
+        }
+
 
         .animate-node-pulse { animation: node-pulse 3s ease-in-out infinite; }
         .animate-float-tech { animation: float-tech 8s ease-in-out infinite; }
