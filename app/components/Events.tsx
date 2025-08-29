@@ -133,8 +133,8 @@ const Events: React.FC = () => {
       duration: "2 hours"
     },
     {
-      title: "DSA Masterclass",
-      date: "Coming Soon",
+      title: "DSA Importance & Workshop",
+      date: "3rd October 2025",
       description: "A comprehensive workshop on Data Structures and Algorithms.",
       status: 'upcoming',
       category: "Expert Session",

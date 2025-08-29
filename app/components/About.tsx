@@ -224,6 +224,66 @@ const About: React.FC = () => {
         <br />
         <br />
 
+        {/* Faulty Advisor Section */}
+          <div className="bg-gray-900/80 backdrop-blur-xl border border-cyan-400/30 rounded-2xl p-8 md:p-12 shadow-xl shadow-cyan-500/10 animate-fade-in-up">
+          <h3 className="text-2xl md:text-3xl font-bold mb-8 text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">
+            Meet the Advisor
+          </h3>
+
+          <div className="flex flex-col md:flex-row items-center gap-10">
+            {/* Advisor Image */}
+            <div className="relative flex-shrink-0">
+              <div className="w-44 h-44 mx-auto md:mx-0 rounded-full overflow-hidden border-4 border-cyan-500/30 shadow-lg shadow-cyan-500/20">
+                <img 
+                  src="https://assets.iiitdwd.ac.in/images/Dr.ChinmayanandaA.jpg" 
+                  alt="Faulty Advisor" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="absolute -bottom-2 -right-2 bg-cyan-600 text-white text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">
+                <span className="text-yellow-400">EXPERT</span>
+              </div>
+              <div className="absolute -inset-4 bg-cyan-500/20 rounded-full blur-xl -z-10"></div>
+            </div>
+
+            {/* Advisor Info */}
+            <div className="flex-1 text-center md:text-left">
+              <h4 className="text-2xl font-bold text-white mb-2">Dr. Chinmayananda Arunachala</h4>
+              <p className="text-cyan-300 mb-4">
+                Faulty Advisor, Ph.D. (IISc Bengaluru)
+              </p>
+
+              <p className="text-gray-300 leading-relaxed">
+               I guide students and teams to build impactful projects. Passionate about innovation, research excellence, and community development, I aim to foster the next generation of tech leaders.
+              </p>
+
+              {/* Buttons */}
+              <div className="mt-6 flex flex-wrap gap-3 justify-center md:justify-start">
+                <a 
+                  href="https://www.linkedin.com/in/chinmay-ananda-7604b726/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="relative overflow-hidden flex items-center gap-2 bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-medium py-2 px-4 rounded-lg transition-all duration-500 shadow-lg hover:shadow-cyan-500/30 transform hover:scale-105 group"
+                >
+                  <span className="relative z-10">LinkedIn</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </a>
+                <a 
+                  href="https://scholar.google.com/citations?user=ZknTy-oAAAAJ&hl=en" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="relative overflow-hidden flex items-center gap-2 bg-gradient-to-r from-purple-600 to-pink-500 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-500 hover:scale-105 group"
+                >
+                  <span className="relative z-10">Google Scholar</span>
+                  <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <br />
         {/* Founder Section */}
         <div className="bg-gray-900/80 backdrop-blur-xl border border-cyan-400/30 rounded-2xl p-8 md:p-12 shadow-xl shadow-cyan-500/10 animate-fade-in-up">
           <h3 className="text-2xl md:text-3xl font-bold mb-8 text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">
