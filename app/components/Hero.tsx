@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { Spotlight } from './spotlight';
+import { cn } from '@/lib/utils';
 
 const Hero = () => {
   const [currentStats, setCurrentStats] = useState({ members: 0, events: 0, projects: 0 });
@@ -37,7 +39,6 @@ const Hero = () => {
     };
 
     const timer = setTimeout(() => {
-
       animateCounter(250, setCurrentStats, 'members', 2000);
       animateCounter(15, setCurrentStats, 'events', 1500);
       animateCounter(8, setCurrentStats, 'projects', 1800);
@@ -48,170 +49,109 @@ const Hero = () => {
 
   return (
     <>
-      <section id="home" className="relative min-h-screen pt-20 flex items-center justify-center overflow-hidden">
-        {/* Enhanced Professional Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-gray-900 to-blue-900">
-          {/* Animated Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-purple-900/20 via-blue-900/30 to-indigo-900/20 animate-gradient-shift"></div>
+      <section id="home" className="relative min-h-screen pt-16 flex items-center justify-center overflow-hidden">
+        {/* Spotlight Component */}
+        <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="white" />
+        
+        {/* Futuristic AI-Inspired Background */}
+        <div className="absolute inset-0 bg-gray-950 overflow-hidden">
+          {/* Hexagonal Grid Overlay */}
+          <div className="absolute inset-0 hex-grid opacity-20"></div>
           
-          {/* Starry Background */}
-          <div className="absolute inset-0 bg-stars opacity-40"></div>
+          {/* Central Data Core Glow */}
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl animate-pulse-slow"></div>
           
-          {/* Subtle Grid Pattern */}
-          <div className="absolute inset-0 bg-grid-pattern opacity-3"></div>
+          {/* Connection Lines */}
+          <div className="absolute inset-0 connection-lines"></div>
           
-          {/* Enhanced Gradient Orbs with Animation */}
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-blue-600/12 to-indigo-600/12 rounded-full blur-3xl animate-pulse-slow"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-purple-600/10 to-pink-600/10 rounded-full blur-3xl animate-float"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-r from-cyan-600/8 to-blue-600/8 rounded-full blur-2xl animate-spin-slow"></div>
+          {/* Floating Tech Elements */}
+          <div className="absolute top-20 left-20 w-10 h-10 border border-cyan-400/30 rounded-lg transform rotate-45 animate-float-tech"></div>
+          <div className="absolute bottom-40 right-32 w-6 h-6 border border-purple-400/30 rounded-full animate-float-tech" style={{animationDelay: '2s'}}></div>
+          <div className="absolute top-40 right-40 w-8 h-8 border border-blue-400/30 transform rotate-12 animate-float-tech" style={{animationDelay: '4s'}}></div>
+          
+          {/* Animated Scan Lines */}
+          <div className="absolute inset-0 scan-lines"></div>
         </div>
 
-        <div className="container mx-auto px-8 py-16 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
+        <div className="container mx-auto px-6 py-12 relative z-10">
+          <div className="max-w-3xl mx-auto text-center">
             
-            {/* Enhanced Status Badge */}
-            <div className="inline-flex items-center space-x-3 bg-gradient-to-r from-blue-500/15 to-purple-500/15 border border-blue-400/25 rounded-full px-6 py-3 mb-8 backdrop-blur-md shadow-lg animate-fade-in">
-              <div className="relative">
-                <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-                <div className="absolute inset-0 w-3 h-3 bg-green-400 rounded-full animate-ping opacity-75"></div>
-              </div>
-              <span className="text-blue-200 font-semibold text-sm tracking-wider uppercase bg-gradient-to-r from-blue-300 to-purple-300 bg-clip-text text-transparent">
-                Microsoft Student Ambassador Community
-              </span>
-            </div>
-
-            {/* Enhanced Main Heading with Animation */}
-            <div className="relative mb-8">
-              {/* Glowing backdrop */}
-              <div className="absolute -inset-8 bg-gradient-to-r from-blue-600/30 via-purple-600/30 to-indigo-600/30 rounded-3xl blur-2xl opacity-50 animate-pulse-glow"></div>
+            {/* Futuristic Main Heading */}
+            <div className="relative mb-6">
+              {/* Binary Code Background Effect */}
+              <div className="absolute -inset-6 bg-gray-900/50 rounded-2xl blur-xl opacity-50"></div>
+              <div className="absolute -inset-6 binary-overlay opacity-30"></div>
               
-              <h1 className="relative text-5xl md:text-7xl font-black mb-4 leading-tight animate-slide-up">
-                <span className="inline-block bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent animate-gradient-text">
+              <h1 className="relative text-4xl md:text-6xl font-black mb-3 leading-tight animate-slide-up">
+                <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 animate-gradient-text">
                   MLSA
                 </span>
                 {' '}
-                <span className="inline-block bg-gradient-to-r from-cyan-300 via-blue-300 to-indigo-300 bg-clip-text text-transparent animate-gradient-text-delayed">
+                <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-cyan-400 animate-gradient-text-delayed">
                   IIIT Dharwad
                 </span>
               </h1>
               
-              {/* Decorative underline */}
+              {/* Animated Tech Underline */}
               <div className="flex justify-center">
-                <div className="h-1 w-32 bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-500 rounded-full animate-expand"></div>
+                <div className="h-1 w-24 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 rounded-full animate-tech-underline"></div>
               </div>
             </div>
 
             {/* Subtitle */}
-            <div className="max-w-3xl mx-auto mb-12 animate-fade-in-delayed">
-              <p className="text-xl md:text-2xl text-gray-200 leading-relaxed mb-10 font-light">
+            <div className="max-w-2xl mx-auto mb-8 animate-fade-in-delayed">
+              <p className="text-lg md:text-xl text-gray-300 leading-relaxed mb-8 font-light">
                 Empowering the next generation of technology leaders through innovation, 
                 collaboration, and cutting-edge Microsoft technologies
               </p>
 
-              {/* Enhanced Founder Card */}
-              <div className="inline-flex items-center space-x-4 bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-xl border border-white/20 rounded-2xl p-8 mb-8 shadow-2xl hover:shadow-blue-500/10 transition-all duration-500 hover:scale-105 animate-float-gentle">
-                <div className="relative">
-                  <div className="w-14 h-14 bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-500 rounded-full flex items-center justify-center animate-spin-slow">
-                    <div className="w-11 h-11 bg-white rounded-full flex items-center justify-center">
-                      <span className="text-blue-600 font-bold text-base">AJ</span>
-                    </div>
-                  </div>
-                  <div className="absolute -top-1 -right-1 w-4 h-4 bg-gradient-to-r from-green-400 to-green-500 border-2 border-white rounded-full animate-pulse"></div>
-                </div>
-                <div className="text-left">
-                  <div className="flex items-center space-x-3 mb-2">
-                    <span className="text-white font-bold text-lg">Aryan Jaiswal</span>
-                    <span className="bg-gradient-to-r from-blue-500/30 to-purple-500/30 text-blue-200 text-xs px-3 py-1.5 rounded-full border border-blue-400/30">Founder</span>
-                  </div>
-                  <p className="text-blue-300 text-sm mb-2 font-medium"><span className='text-yellow-400 font-bold'>Gold</span>-Microsoft Learn Student Ambassador</p>
-                  <a
-                    href="https://www.linkedin.com/in/aryanjstar/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-300 hover:text-blue-100 text-sm transition-all duration-300 hover:underline font-medium"
-                  >
-                    Connect on LinkedIn →
-                  </a>
-                </div>
-              </div>
-
-              {/* Enhanced Mission Statement */}
-              <div className="relative mb-12 mt-12 animate-fade-in-up">
-                {/* Multiple glowing layers */}
-                <div className="absolute -inset-6 bg-gradient-to-r from-blue-600/25 via-purple-600/25 to-pink-600/25 rounded-2xl blur-xl opacity-60 animate-pulse-glow"></div>
-                <div className="absolute -inset-4 bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-purple-500/20 rounded-xl blur-lg opacity-80 animate-pulse-glow-delayed"></div>
+              {/* Futuristic Mission Statement */}
+              <div className="relative mb-10 mt-10 animate-fade-in-up">
+                <div className="absolute -inset-4 bg-gradient-to-r from-cyan-600/25 via-blue-600/25 to-purple-600/25 rounded-xl blur-lg opacity-60 animate-pulse-glow"></div>
                 
-                <div className="relative bg-gradient-to-br from-blue-900/60 via-purple-900/50 to-indigo-900/60 backdrop-blur-xl border-2 border-gradient rounded-2xl p-8 shadow-2xl">
-                  {/* <div className="flex items-center justify-center mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <svg 
-                        key={i} 
-                        className="w-6 h-6 text-yellow-400 mx-1 animate-twinkle" 
-                        style={{animationDelay: `${i * 0.2}s`}}
-                        fill="currentColor" 
-                        viewBox="0 0 20 20"
-                      >
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                    ))}
-                  </div> */}
-                  <p className="text-3xl md:text-4xl font-light text-white italic mb-3 animate-text-glow">
-                    <span className="bg-gradient-to-r from-yellow-300 via-orange-300 to-red-300 bg-clip-text text-transparent font-semibold">
+                <div className="relative bg-gray-900/80 backdrop-blur-xl border border-cyan-400/30 rounded-xl p-6 shadow-2xl shadow-cyan-500/10">
+                  <p className="text-2xl md:text-3xl font-light text-white italic mb-2 animate-text-glow">
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-emerald-300 to-rose-300 font-semibold">
                       &ldquo;Be a force for good!&rdquo;
                     </span>
                   </p>
-                  <div className="text-blue-200 text-base font-medium">
+                  <div className="text-cyan-300 text-sm font-medium font-mono">
                     Our guiding principle
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Enhanced Statistics */}
-            {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-              <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/20 rounded-2xl p-8 transition-all duration-500 hover:bg-gradient-to-br hover:from-blue-500/20 hover:to-purple-500/20 hover:scale-105 hover:shadow-2xl animate-fade-in-up" style={{animationDelay: '0.1s'}}>
-                <div className="text-5xl font-black text-transparent bg-gradient-to-r from-blue-300 to-cyan-300 bg-clip-text mb-3 animate-count">{currentStats.members}+</div>
-                <div className="text-gray-200 font-semibold">Active Members</div>
-              </div>
-              <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/20 rounded-2xl p-8 transition-all duration-500 hover:bg-gradient-to-br hover:from-purple-500/20 hover:to-pink-500/20 hover:scale-105 hover:shadow-2xl animate-fade-in-up" style={{animationDelay: '0.2s'}}>
-                <div className="text-5xl font-black text-transparent bg-gradient-to-r from-purple-300 to-pink-300 bg-clip-text mb-3 animate-count">{currentStats.events}+</div>
-                <div className="text-gray-200 font-semibold">Technical Events</div>
-              </div>
-              <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/20 rounded-2xl p-8 transition-all duration-500 hover:bg-gradient-to-br hover:from-indigo-500/20 hover:to-purple-500/20 hover:scale-105 hover:shadow-2xl animate-fade-in-up" style={{animationDelay: '0.3s'}}>
-                <div className="text-5xl font-black text-transparent bg-gradient-to-r from-indigo-300 to-purple-300 bg-clip-text mb-3 animate-count">{currentStats.projects}+</div>
-                <div className="text-gray-200 font-semibold">Innovation Projects</div>
-              </div>
-            </div> */}
-
             {/* Enhanced Call-to-Action Buttons */}
-            <div className="flex flex-col sm:flex-row justify-center gap-6 mb-16 animate-fade-in-up">
+            <div className="flex flex-col sm:flex-row justify-center gap-4 mb-12 animate-fade-in-up">
               <a
                 href="https://mvp.microsoft.com/studentambassadors/?wt.mc_id=studentamb_360446/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="relative overflow-hidden bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 text-white font-bold py-5 px-10 rounded-2xl transition-all duration-500 shadow-xl hover:shadow-2xl hover:shadow-blue-500/30 transform hover:scale-105 animate-button-glow"
+                className="relative overflow-hidden bg-gradient-to-r from-cyan-600 via-blue-600 to-purple-600 text-white font-bold py-4 px-8 rounded-xl transition-all duration-500 shadow-xl hover:shadow-2xl hover:shadow-cyan-500/30 transform hover:scale-105 animate-button-glow group"
               >
                 <span className="relative z-10">Become an MLSA</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-500 opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </a>
               <a
                 href="https://chat.whatsapp.com/HiE8qUaaIpYJNA5WPuCozD"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="relative overflow-hidden bg-gradient-to-r from-white/15 to-white/10 backdrop-blur-xl border-2 border-white/30 text-white font-bold py-5 px-10 rounded-2xl transition-all duration-500 hover:bg-gradient-to-r hover:from-white/25 hover:to-white/20 hover:border-white/50 hover:scale-105 animate-button-pulse"
+                className="relative overflow-hidden bg-gray-800/70 backdrop-blur-xl border-2 border-cyan-400/30 text-white font-bold py-4 px-8 rounded-xl transition-all duration-500 hover:border-cyan-400/50 hover:scale-105 animate-button-pulse group"
               >
                 <span className="relative z-10">Join Community</span>
+                <div className="absolute inset-0 bg-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </a>
             </div>
 
-            {/* Enhanced Technology Partners */}
-            <div className="border-t border-gradient-to-r from-transparent via-white/20 to-transparent pt-12 animate-fade-in-delayed">
-              <p className="text-gray-300 text-sm uppercase tracking-wider mb-8 font-semibold">Powered by Microsoft Technologies</p>
-              <div className="flex flex-wrap justify-center gap-4">
+            {/* Futuristic Technology Partners */}
+            <div className="border-t border-gray-700 pt-10 animate-fade-in-delayed">
+              <p className="text-cyan-300 text-xs uppercase tracking-wider mb-6 font-semibold font-mono">Powered by Microsoft Technologies</p>
+              <div className="flex flex-wrap justify-center gap-3">
                 {['Azure', '.NET', 'VS Code', 'GitHub', 'Power BI', 'Microsoft 365'].map((tech, index) => (
                   <div
                     key={tech}
-                    className="px-6 py-3 bg-gradient-to-r from-white/10 to-white/5 border border-white/20 rounded-xl text-white text-sm font-medium transition-all duration-400 hover:bg-gradient-to-r hover:from-blue-500/20 hover:to-purple-500/20 hover:scale-110 hover:shadow-lg animate-tech-float"
+                    className="px-4 py-2 bg-gray-800/70 backdrop-blur-sm border border-cyan-400/20 rounded-lg text-cyan-300 text-xs font-medium font-mono transition-all duration-400 hover:bg-cyan-500/20 hover:scale-110 hover:shadow-lg hover:shadow-cyan-500/20 animate-tech-float"
                     style={{animationDelay: `${index * 0.1}s`}}
                   >
                     {tech}
@@ -221,57 +161,86 @@ const Hero = () => {
             </div>
           </div>
         </div>
-
-        {/* Enhanced Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce-gentle">
-          <div className="w-6 h-12 border-2 border-white/40 rounded-full flex justify-center p-2 bg-white/5 backdrop-blur-sm">
-            <div className="w-1.5 h-4 bg-gradient-to-b from-white to-blue-300 rounded-full animate-bounce"></div>
-          </div>
-        </div>
       </section>
 
       <style jsx>{`
-        .border-gradient {
-          border-image: linear-gradient(45deg, #3b82f6, #8b5cf6, #6366f1) 1;
-        }
-        
-        .bg-grid-pattern {
-          background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
-          background-size: 40px 40px;
-        }
-        
-        .bg-stars {
+        .hex-grid {
           background-image: 
-            radial-gradient(2px 2px at 20px 30px, #eee, transparent),
-            radial-gradient(2px 2px at 40px 70px, #fff, transparent),
-            radial-gradient(1px 1px at 90px 40px, #ddd, transparent),
-            radial-gradient(1px 1px at 130px 80px, #fff, transparent),
-            radial-gradient(2px 2px at 160px 30px, #eee, transparent),
-            radial-gradient(1px 1px at 210px 70px, #ddd, transparent),
-            radial-gradient(2px 2px at 250px 40px, #fff, transparent),
-            radial-gradient(1px 1px at 290px 80px, #eee, transparent),
-            radial-gradient(2px 2px at 330px 30px, #ddd, transparent),
-            radial-gradient(1px 1px at 370px 70px, #fff, transparent),
-            radial-gradient(2px 2px at 410px 40px, #eee, transparent),
-            radial-gradient(1px 1px at 450px 80px, #ddd, transparent),
-            radial-gradient(2px 2px at 490px 30px, #fff, transparent),
-            radial-gradient(1px 1px at 530px 70px, #eee, transparent),
-            radial-gradient(2px 2px at 570px 40px, #ddd, transparent),
-            radial-gradient(1px 1px at 610px 80px, #fff, transparent);
-          background-size: 650px 650px;
-          animation: twinkle 8s infinite ease-in-out;
+            linear-gradient(90deg, rgba(6, 182, 212, 0.1) 1px, transparent 1px),
+            linear-gradient(180deg, rgba(6, 182, 212, 0.1) 1px, transparent 1px);
+          background-size: 30px 30px;
+          mask-image: repeating-conic-gradient(#000 0% 25%, transparent 0% 50%);
+          mask-size: 30px 30px;
         }
         
-        @keyframes twinkle {
-          0% { opacity: 0.3; }
-          50% { opacity: 0.8; }
-          100% { opacity: 0.3; }
+        .binary-overlay::before {
+          content: "010101 101010 010101 101010 010101 101010 010101 101010 010101 101010 010101 101010";
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          color: rgba(6, 182, 212, 0.2);
+          font-family: monospace;
+          font-size: 6px;
+          line-height: 1;
+          overflow: hidden;
+          white-space: nowrap;
+          animation: binary-scroll 20s linear infinite;
         }
-
-        @keyframes gradient-shift {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
+        
+        .connection-lines::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-image: 
+            linear-gradient(to right, rgba(6, 182, 212, 0.1) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(6, 182, 212, 0.1) 1px, transparent 1px);
+          background-size: 30px 30px;
+          mask-image: 
+            radial-gradient(circle at 25% 25%, black 10%, transparent 20%),
+            radial-gradient(circle at 75% 75%, black 10%, transparent 20%),
+            radial-gradient(circle at 25% 75%, black 10%, transparent 20%),
+            radial-gradient(circle at 75% 25%, black 10%, transparent 20%);
+          mask-size: 100% 100%;
+          mask-repeat: no-repeat;
+        }
+        
+        .scan-lines {
+          background: linear-gradient(
+            to bottom,
+            transparent 50%,
+            rgba(6, 182, 212, 0.03) 51%,
+            transparent 52%
+          );
+          background-size: 100% 3px;
+          animation: scan 8s linear infinite;
+          pointer-events: none;
+        }
+        
+        @keyframes binary-scroll {
+          0% { transform: translateY(0); }
+          100% { transform: translateY(-100%); }
+        }
+        
+        @keyframes scan {
+          0% { background-position: 0 0; }
+          100% { background-position: 0 100%; }
+        }
+        
+        @keyframes float-tech {
+          0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.3; }
+          33% { transform: translateY(-8px) rotate(1deg); opacity: 0.5; }
+          66% { transform: translateY(4px) rotate(-0.5deg); opacity: 0.4; }
+        }
+        
+        @keyframes tech-underline {
+          0% { width: 0; opacity: 0; }
+          50% { width: 6rem; opacity: 1; }
+          100% { box-shadow: 0 0 12px 2px rgba(6, 182, 212, 0.7); }
         }
 
         @keyframes pulse-slow {
@@ -279,34 +248,23 @@ const Hero = () => {
           50% { opacity: 0.9; transform: scale(1.05); }
         }
 
-        @keyframes float {
-          0%, 100% { transform: translateY(0px) rotate(0deg); }
-          33% { transform: translateY(-10px) rotate(1deg); }
-          66% { transform: translateY(5px) rotate(-0.5deg); }
-        }
-
-        @keyframes spin-slow {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-
         @keyframes fade-in {
-          from { opacity: 0; transform: translateY(20px); }
+          from { opacity: 0; transform: translateY(15px); }
           to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes fade-in-delayed {
-          0% { opacity: 0; transform: translateY(30px); }
+          0% { opacity: 0; transform: translateY(20px); }
           100% { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes fade-in-up {
-          from { opacity: 0; transform: translateY(40px); }
+          from { opacity: 0; transform: translateY(30px); }
           to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes slide-up {
-          from { opacity: 0; transform: translateY(50px); }
+          from { opacity: 0; transform: translateY(40px); }
           to { opacity: 1; transform: translateY(0); }
         }
 
@@ -322,44 +280,19 @@ const Hero = () => {
           100% { background-position: 100% 50%; }
         }
 
-        @keyframes expand {
-          from { width: 0; }
-          to { width: 8rem; }
-        }
-
         @keyframes pulse-glow {
           0%, 100% { opacity: 0.5; }
           50% { opacity: 0.8; }
         }
 
-        @keyframes pulse-glow-delayed {
-          0%, 100% { opacity: 0.3; }
-          50% { opacity: 0.6; }
-        }
-
-        @keyframes float-gentle {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-5px); }
-        }
-
         @keyframes text-glow {
-          0%, 100% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.3); }
-          50% { text-shadow: 0 0 20px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.3); }
-        }
-
-        @keyframes twinkle {
-          0%, 100% { opacity: 0.7; }
-          50% { opacity: 1; }
-        }
-
-        @keyframes count {
-          from { transform: scale(0.8); opacity: 0; }
-          to { transform: scale(1); opacity: 1; }
+          0%, 100% { text-shadow: 0 0 8px rgba(6, 182, 212, 0.3); }
+          50% { text-shadow: 0 0 15px rgba(6, 182, 212, 0.5), 0 0 25px rgba(6, 182, 212, 0.3); }
         }
 
         @keyframes button-glow {
-          0%, 100% { box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3); }
-          50% { box-shadow: 0 15px 35px rgba(59, 130, 246, 0.5); }
+          0%, 100% { box-shadow: 0 8px 20px rgba(6, 182, 212, 0.3); }
+          50% { box-shadow: 0 12px 28px rgba(6, 182, 212, 0.5); }
         }
 
         @keyframes button-pulse {
@@ -369,35 +302,24 @@ const Hero = () => {
 
         @keyframes tech-float {
           0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-3px); }
+          50% { transform: translateY(-2px); }
         }
 
-        @keyframes bounce-gentle {
-          0%, 100% { transform: translateX(-50%) translateY(0); }
-          50% { transform: translateX(-50%) translateY(-10px); }
-        }
-
-        .animate-gradient-shift { animation: gradient-shift 6s ease infinite; }
+        .animate-node-pulse { animation: node-pulse 3s ease-in-out infinite; }
+        .animate-float-tech { animation: float-tech 8s ease-in-out infinite; }
+        .animate-tech-underline { animation: tech-underline 2s ease-out forwards; }
         .animate-pulse-slow { animation: pulse-slow 4s ease-in-out infinite; }
-        .animate-float { animation: float 6s ease-in-out infinite; }
-        .animate-spin-slow { animation: spin-slow 20s linear infinite; }
         .animate-fade-in { animation: fade-in 1s ease-out; }
         .animate-fade-in-delayed { animation: fade-in-delayed 1.2s ease-out; }
         .animate-fade-in-up { animation: fade-in-up 0.8s ease-out; }
         .animate-slide-up { animation: slide-up 1s ease-out; }
         .animate-gradient-text { animation: gradient-text 3s ease infinite; }
         .animate-gradient-text-delayed { animation: gradient-text-delayed 3s ease infinite; }
-        .animate-expand { animation: expand 1s ease-out; }
         .animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
-        .animate-pulse-glow-delayed { animation: pulse-glow-delayed 3s ease-in-out infinite 1s; }
-        .animate-float-gentle { animation: float-gentle 4s ease-in-out infinite; }
         .animate-text-glow { animation: text-glow 2s ease-in-out infinite; }
-        .animate-twinkle { animation: twinkle 2s ease-in-out infinite; }
-        .animate-count { animation: count 0.8s ease-out; }
         .animate-button-glow { animation: button-glow 3s ease-in-out infinite; }
         .animate-button-pulse { animation: button-pulse 2s ease-in-out infinite; }
         .animate-tech-float { animation: tech-float 3s ease-in-out infinite; }
-        .animate-bounce-gentle { animation: bounce-gentle 2s ease-in-out infinite; }
       `}</style>
     </>
   );
