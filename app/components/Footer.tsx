@@ -37,7 +37,7 @@ const Footer: React.FC = () => {
           <a href="https://www.linkedin.com/company/mlsa-iiitdwd/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500 transition-colors duration-300">
             <Linkedin size={22} className="hover:animate-pulse" />
           </a>
-          <a href="https://github.com/Harshith-Daraboina/MSA-Landing" target="_blank" rel="noopener noreferrer" className="hover:text-gray-400 transition-colors duration-300">
+          <a href="https://github.com/MSAIIITDWD" target="_blank" rel="noopener noreferrer" className="hover:text-gray-400 transition-colors duration-300">
             <Github size={22} className="hover:animate-pulse" />
           </a>
         </div>
