@@ -254,7 +254,7 @@ const About: React.FC = () => {
               </p>
 
               <p className="text-gray-300 leading-relaxed">
-               I guide students and teams to build impactful projects. Passionate about innovation, research excellence, and community development, I aim to foster the next generation of tech leaders.
+                He guides students and teams to build impactful projects. Passionate about innovation, research excellence, and community development, he aims to foster the next generation of tech leaders.
               </p>
 
               {/* Buttons */}
@@ -309,7 +309,7 @@ const About: React.FC = () => {
               <h4 className="text-2xl font-bold text-white mb-2">Aryan Jaiswal</h4>
               <p className="text-cyan-300 mb-4">Founder, Former Lead & <span className='text-yellow-400'>GOLD</span> Microsoft Student Ambassador</p>
               <p className="text-gray-300 leading-relaxed">
-                Passionate about AI, Web Development, and Community Building. I am a B.Tech student specializing in full-stack development, AI/ML, and cloud technologies. With hands-on experience in building impactful projects and mentoring students, I aim to create a thriving tech community at IIIT Dharwad.
+                He is passionate about AI, Web Development, and Community Building. A B.Tech student specializing in full-stack development, AI/ML, and cloud technologies, he has hands-on experience in building impactful projects and mentoring students. He aims to create a thriving tech community at IIIT Dharwad.
               </p>
 
               <div className="mt-6 flex flex-wrap gap-3 justify-center md:justify-start">
@@ -372,7 +372,7 @@ const About: React.FC = () => {
               <h4 className="text-2xl font-bold text-white mb-2">Sai Sathwik Ch</h4>
               <p className="text-cyan-300 mb-4">Current Lead Microsoft Student Ambassador</p>
               <p className="text-gray-300 leading-relaxed">
-                I'm a senior at IIIT Dharwad pursuing a Bachelors degree in Computer Science. I have a keen interest in the field of Artificial Intelligence and Machine Learning, and I am excited to be a part of the Microsoft Student Ambassadors program. I am passionate about contributing to the growth and development of the Microsoft community, and I am committed to using my skills and knowledge to make a positive impact on the world.
+                He is a senior at IIIT Dharwad pursuing a Bachelor's degree in Computer Science. With a keen interest in Artificial Intelligence and Machine Learning, he is excited to be a part of the Microsoft Student Ambassadors program. He is passionate about contributing to the growth and development of the Microsoft community and is committed to using his skills and knowledge to make a positive impact on the world.
               </p>
               <div className="mt-6 flex flex-wrap gap-3 justify-center md:justify-start">
                 <a 
