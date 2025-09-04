@@ -356,7 +356,7 @@ const About: React.FC = () => {
             <div className="relative">
               <div className="w-48 h-48 mx-auto md:mx-0 rounded-full overflow-hidden border-4 border-cyan-500/30 shadow-lg shadow-cyan-500/20">
                 <img 
-                  src="/images/SS.jpg" 
+                  src="/images/SS2.jpg" 
                   alt="Aryan Jaiswal" 
                   className="w-full h-full object-cover"
                 />
