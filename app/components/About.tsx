@@ -7,7 +7,7 @@ const About: React.FC = () => {
   // Sample event images (replace with your actual event images)
   const eventImages = [
     "/images/IMG_1.jpg",
-    "/images/IMG_3.jpg",
+    // "/images/IMG_3.jpg",
     "/images/IMG_4.jpg",
     "/images/IMG_2.jpg",
     "/images/IMG_6.jpg",
@@ -15,21 +15,21 @@ const About: React.FC = () => {
   ];
 
   const eventTitles = [
-    "Azure Workshop 2023",
-    "Hackathon Finals",
-    "AI/ML Bootcamp",
+    "IOT Workshop 2024",
+    // "Hackathon Finals",
+    "LOGIC LEAGUE 1.0",
     "Community Meetup",
-    "Cloud Computing Seminar",
-    "Developer Conference"
+    "GET TO GEATHER ",
+    "CODING CONTEST"
   ];
 
   const eventDescriptions = [
-    "Hands-on workshop on Microsoft Azure cloud services",
-    "Annual coding competition with exciting prizes",
-    "Intensive training on artificial intelligence and machine learning",
+    "Hands-on workshop on Internet of Things and smart devices(ESP8266, Raspberry Pi, etc.)",
+    // "Annual coding competition with exciting prizes",
+    "Competitive programming event for all skill levels",
     "Networking event with industry professionals",
-    "Deep dive into cloud technologies and solutions",
-    "Annual gathering of developers and tech enthusiasts"
+    "Fun activities and games to foster community spirit",
+    "Competitive coding event to test your skills"
   ];
 
   useEffect(() => {
