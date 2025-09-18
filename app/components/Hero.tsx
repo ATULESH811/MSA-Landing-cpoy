@@ -124,7 +124,7 @@ const Hero = () => {
                   {/* Terminal Body */}
                   <div className="p-6 font-mono text-cyan-300 text-lg">
                     <p><span className="text-green-400">➜</span> echo "<span className="animate-gradient-text bg-gradient-to-r from-cyan-400 via-emerald-300 to-rose-400 bg-clip-text text-transparent font-semibold">Be a force for good!</span>"</p>
-                    <p className="text-emerald-300 mt-2">Be a force for good!</p>
+                    <p className="text-emerald-300 mt-2">&ldquo;Be a force for good!&rdquo;</p>
                   </div>
                 </div>
               </div>
