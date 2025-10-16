@@ -13,6 +13,7 @@ pnpm dev
 # or
 bun dev
 ```
+me trying to contribute into read me
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
